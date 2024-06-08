@@ -1,12 +1,9 @@
-import ProductCard from "@/components/productcard/ProductCard";
-import Link from "next/link";
+import React from 'react'
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <main>
-      <h1>hello world</h1>
-      <Link className="btn bg-secondary text-secondary-content" href="/users">Users</Link>
-      <ProductCard />
-    </main>
-  );
+    <div>HomePage</div>
+  )
 }
+
+export default HomePage
