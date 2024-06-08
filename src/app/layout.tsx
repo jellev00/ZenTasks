@@ -29,7 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="flex justify-center">
           <NavBar />
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center md:px-8">
           {children}
         </div>
       </body>

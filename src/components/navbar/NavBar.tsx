@@ -39,6 +39,12 @@ const NavBar = () => {
                         <li>
                             <Link href="/issues">Issues</Link>
                         </li>
+                        <li className="block sm:hidden">
+                            <Link href="/" className="justify-between">
+                                Profile
+                                <span className="badge">New</span>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -61,7 +67,7 @@ const NavBar = () => {
                         </path>
                     </svg>
                 </label>
-                <div className="dropdown dropdown-end">
+                <div className="dropdown dropdown-end hidden sm:block">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
