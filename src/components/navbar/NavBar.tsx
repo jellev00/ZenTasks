@@ -26,7 +26,7 @@ const NavBar = () => {
     }, [theme]);
 
     return (
-        <div className="navbar bg-base-200 rounded-2xl w-2/4">
+        <div className="navbar justify-between bg-base-200 text-base-content rounded-box w-full max-w-xl mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
