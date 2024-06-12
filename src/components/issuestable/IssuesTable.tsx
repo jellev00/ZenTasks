@@ -3,105 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'
 
-const Data = [
-    {
-        "id": 1,
-        "title": "Project Initialization",
-        "badge": {
-            "name": "Open",
-            "color": "primary"
-        },
-        "created": "2024-06-11T09:00:00Z",
-        "users": [
-            {
-                "id": 1,
-                "name": "John Doe",
-                "image": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "title": "Database Design",
-        "badge": {
-            "name": "In Progress",
-            "color": "secondary"
-        },
-        "created": "2024-06-11T10:00:00Z",
-        "users": [
-            {
-                "id": 2,
-                "name": "Jane Smith",
-                "image": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "title": "API Development",
-        "badge": {
-            "name": "Closed",
-            "color": "accent"
-        },
-        "created": "2024-06-11T11:00:00Z",
-        "users": [
-            {
-                "id": 3,
-                "name": "Alice Johnson",
-                "image": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            }
-        ]
-    },
-    {
-        "id": 4,
-        "title": "Frontend Implementation",
-        "badge": {
-            "name": "Open",
-            "color": "primary"
-        },
-        "created": "2024-06-11T12:00:00Z",
-        "users": [
-            {
-                "id": 4,
-                "name": "Bob Brown",
-                "image": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            }
-        ]
-    },
-    {
-        "id": 5,
-        "title": "Testing",
-        "badge": {
-            "name": "In Progress",
-            "color": "secondary"
-        },
-        "created": "2024-06-11T13:00:00Z",
-        "users": [
-            {
-                "id": 5,
-                "name": "Charlie Davis",
-                "image": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            }
-        ]
-    },
-    {
-        "id": 6,
-        "title": "Deployment",
-        "badge": {
-            "name": "Closed",
-            "color": "accent"
-        },
-        "created": "2024-06-11T14:00:00Z",
-        "users": [
-            {
-                "id": 6,
-                "name": "Eve White",
-                "image": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            }
-        ]
-    }
-];
-
 interface Issue {
     id: number;
     title: string;
@@ -114,30 +15,20 @@ interface Issue {
 }
 
 interface IssuesTableProps {
-    selectedOption: string;
+    currentPage: number;
+    itemsPerPage: number;
+    data: Issue[];
 }
 
-const IssuesTable: React.FC<IssuesTableProps> = ({ selectedOption }) => {
+const IssuesTable: React.FC<IssuesTableProps> = ({ currentPage, itemsPerPage, data }) => {
 
     const router = useRouter();
-    const [filteredData, setFilteredData] = useState<Issue[]>(Data);
 
     const handleNavigation = (id: number) => {
         router.push(`/issues/${id}`);
     };
 
-    useEffect(() => {
-        handleFilterChange(selectedOption);
-    }, [selectedOption]);
-
-    const handleFilterChange = (selectedOption: string) => {
-        if (selectedOption === '' || selectedOption === 'All Issues') {
-            setFilteredData(Data); // Show all issues
-        } else {
-            const filtered = Data.filter(item => item.badge.name === selectedOption);
-            setFilteredData(filtered);
-        }
-    };
+    const paginatedData = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
     return (
         <div className="overflow-x-auto mt-10 border-2 border-base-300 rounded-2xl">
@@ -151,7 +42,7 @@ const IssuesTable: React.FC<IssuesTableProps> = ({ selectedOption }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredData.map((data) => (
+                    {paginatedData.map((data) => (
                         <tr key={data.id} className="cursor-pointer hover:bg-base-200" onClick={() => handleNavigation(data.id)}>
                             <td>{data.title}</td>
                             <td>
