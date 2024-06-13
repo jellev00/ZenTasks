@@ -268,7 +268,7 @@ const IssuesPage = () => {
     return (
         <div className="w-full min-w-xl mx-auto mt-10">
             <div className="flex justify-between">
-                <Select onChange={setSelectedOption} />
+                <Select onChange={setSelectedOption} value={selectedOption} />
                 <Modal />
             </div>
             <IssuesTable
