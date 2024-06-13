@@ -9,7 +9,14 @@ import dark_logo from "../../../public/images/Dark-theme-logo.png";
 
 const NavBar = () => {
 
-    const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
+    const [theme, setTheme] = useState("dark");
+
+    useEffect(() => {
+        const localTheme = localStorage.getItem("theme");
+        if (localTheme) {
+            setTheme(localTheme);
+        }
+    }, []);
 
     const handleToggle = (e: any) => {
         if (e.target.checked) {
@@ -20,9 +27,8 @@ const NavBar = () => {
     };
 
     useEffect(() => {
-        localStorage.setItem('theme', theme!)
-        const localTheme = localStorage.getItem('theme')
-        document.querySelector('html')?.setAttribute('data-theme', localTheme!)
+        localStorage.setItem('theme', theme);
+        document.querySelector('html')?.setAttribute('data-theme', theme);
     }, [theme]);
 
     return (
