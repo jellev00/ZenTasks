@@ -11,6 +11,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@uiw/react-markdown-editor": "^6.1.1",
     "@uiw/react-md-editor": "^3.6.0",
     "chart.js": "^4.4.3",

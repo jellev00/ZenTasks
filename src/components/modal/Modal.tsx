@@ -1,13 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 const MarkdownEditor = dynamic(() => import('@uiw/react-markdown-editor'), { ssr: false });
 
 const Modal = () => {
 
-    const mdStr = `# This is a H1  \n## This is a H2  \n###### This is a H6`;
-    const [markdown, setMarkdown] = useState(mdStr);
+    const [markdown, setMarkdown] = useState('');
     const [isVisible, setIsVisible] = useState(true);
     const [selectedStatus, setSelectedStatus] = useState('');
 
@@ -36,11 +37,16 @@ const Modal = () => {
 
     return (
         <div>
-            <label htmlFor="my_modal_7" className="btn hover:bg-primary hover:text-primary-content">New Issue</label>
-            <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+            <label htmlFor="my_modal" className="btn hover:bg-primary hover:text-primary-content">New Issue</label>
+            <input type="checkbox" id="my_modal" className="modal-toggle" />
             <div className="modal" role="dialog">
                 <div className="modal-box w-11/12 max-w-5xl">
-                    <input type="text" placeholder="Issue title here" className="input input-bordered w-full max-w-lg mb-5" />
+                    <div className="flex items-center justify-between gap-2 mb-5">
+                        <input type="text" placeholder="Issue title here" className="input input-bordered w-full max-w-lg" />
+                        <label htmlFor="my_modal" className="btn hover:bg-primary hover:text-primary-content" onClick={() => handleCheckboxChange('')}>
+                            <FontAwesomeIcon icon={faX} />
+                        </label>
+                    </div>
                     <div className="form-control flex flex-row flex-wrap mb-5">
                         <label className="label cursor-pointer mr-5">
                             <input
@@ -78,7 +84,7 @@ const Modal = () => {
                         toolbars={["bold", "italic", "header", "code"]}
                     />
                 </div>
-                <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
+                <label className="modal-backdrop" htmlFor="my_modal" onClick={() => handleCheckboxChange('')}>Close</label>
             </div>
         </div>
     )
