@@ -1,25 +1,19 @@
 import React from 'react';
 
 interface SelectProps {
-    onChange: (selectedOption: string) => void;
+    onChange: (value: string) => void;
+    value: string;
 }
 
-const Select: React.FC<SelectProps> = ({ onChange }) => {
-
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        onChange(value);
-    };
-
+const Select: React.FC<SelectProps> = ({ onChange, value }) => {
     return (
-        <select className="select select-bordered w-full max-w-xs" onChange={handleChange}>
-            <option disabled selected>Filter by status...</option>
-            <option>All Issues</option>
-            <option>Open</option>
-            <option>In Progress</option>
-            <option>Closed</option>
+        <select value={value} onChange={(e) => onChange(e.target.value)} className="select select-bordered">
+            <option value="">All Issues</option>
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Closed">Closed</option>
         </select>
-    )
-}
+    );
+};
 
-export default Select
+export default Select;
