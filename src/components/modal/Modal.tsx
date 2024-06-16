@@ -35,6 +35,11 @@ const Modal = () => {
         setSelectedStatus(status);
     };
 
+    const handleClose = () => {
+        setSelectedStatus('');
+        setMarkdown('');
+    }
+
     return (
         <div>
             <label htmlFor="my_modal" className="btn hover:bg-primary hover:text-primary-content">New Issue</label>
@@ -43,7 +48,7 @@ const Modal = () => {
                 <div className="modal-box w-11/12 max-w-5xl">
                     <div className="flex items-center justify-between gap-2 mb-5">
                         <input type="text" placeholder="Issue title here" className="input input-bordered w-full max-w-lg" />
-                        <label htmlFor="my_modal" className="btn hover:bg-primary hover:text-primary-content" onClick={() => handleCheckboxChange('')}>
+                        <label htmlFor="my_modal" className="btn hover:bg-primary hover:text-primary-content" onClick={() => handleClose()}>
                             <FontAwesomeIcon icon={faX} />
                         </label>
                     </div>
@@ -84,7 +89,7 @@ const Modal = () => {
                         toolbars={["bold", "italic", "header", "code"]}
                     />
                 </div>
-                <label className="modal-backdrop" htmlFor="my_modal" onClick={() => handleCheckboxChange('')}>Close</label>
+                <label className="modal-backdrop" htmlFor="my_modal" onClick={() => handleClose()}>Close</label>
             </div>
         </div>
     )
